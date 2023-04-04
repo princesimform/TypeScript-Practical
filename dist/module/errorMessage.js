@@ -1,4 +1,4 @@
-import { output, error } from "./utils";
+import { output, error } from "./utils.js";
 const errorMsg = () => {
     error.innerText = "Malformed expression";
     output.value = '';
