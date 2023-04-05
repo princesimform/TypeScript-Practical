@@ -9,6 +9,7 @@ function Evaluate(equ: string): number | undefined {
     if (EquEvalRes != null || EquEvalRes != undefined) {
         return Number(EquEvalRes.toFixed(2));
     }
+    return;
 }
 
 

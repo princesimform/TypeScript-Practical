@@ -14,7 +14,7 @@ class stackNode implements stackNodeType {
     }
 }
 
-class LinkedStack {
+class LinkedStack implements LinkedStackType {
     head: headType;
     size: number;
 
@@ -70,6 +70,7 @@ class LinkedStack {
             return current;
         }
 
+        return;
 
     }
 
@@ -91,7 +92,7 @@ class LinkedStack {
                 return null;
             }
         }
-
+        return;
     }
 
     printStack() {
@@ -176,10 +177,10 @@ class InfixToPostfix {
                 }
                 this.stk.pop();
             } else {
-                if (this.precedence(c) > this.precedence(this.stk[this.stk.length - 1])) {
+                if (this.precedence(c) > this.precedence(this.stk[this.stk.length - 1]!)) {
                     this.stk.push(c);
                 } else {
-                    while (this.stk[this.stk.length - 1] != '#' && this.precedence(c) <= this.precedence(this.stk[this.stk.length - 1])) {
+                    while (this.stk[this.stk.length - 1] != '#' && this.precedence(c) <= this.precedence(this.stk[this.stk.length - 1]!)) {
                         this.pfixNumber.push(String(this.stk.pop()));
                     }
                     this.stk.push(c)
@@ -238,7 +239,7 @@ class PostFix {
     EvaluatePostFix(exp: Array<string>) {
 
         for (var i = 0; i < exp.length; i++) {
-            let c = exp[i];
+            let c = exp[i]!;
             if (!isNaN(parseInt(c))) {
                 this.numStack.pushToStack(parseFloat(c));
             } else if (c === '+' || c === '-' || c === '*' || c === '/' || c === '^' || c === '%' || c == 'log' || c === '√') {

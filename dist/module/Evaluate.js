@@ -9,5 +9,6 @@ function Evaluate(equ) {
     if (EquEvalRes != null || EquEvalRes != undefined) {
         return Number(EquEvalRes.toFixed(2));
     }
+    return;
 }
 export { Evaluate };

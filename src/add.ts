@@ -138,8 +138,8 @@ window.onclick = function (event: MouseEvent) {
     if (!ButtonType.classList.contains('btn-func')) {
         for (let i = 0; i < funcListItem.length; i++) {
             var openDropdown = funcListItem[i];
-            if (openDropdown.classList.contains('show')) {
-                openDropdown.classList.remove('show');
+            if (openDropdown!.classList.contains('show')) {
+                openDropdown!.classList.remove('show');
             }
         }
     }
@@ -147,8 +147,8 @@ window.onclick = function (event: MouseEvent) {
     if (!ButtonType.classList.contains('btn-trigo')) {
         for (let i = 0; i < trigoListItem.length; i++) {
             var openDropdown = trigoListItem[i];
-            if (openDropdown.classList.contains('show')) {
-                openDropdown.classList.remove('show');
+            if (openDropdown!.classList.contains('show')) {
+                openDropdown!.classList.remove('show');
             }
         }
     }

@@ -53,6 +53,7 @@ class LinkedStack {
             this.size -= 1;
             return current;
         }
+        return;
     }
     isStackEmpty() {
         return (this.size < 1) ? true : false;
@@ -72,6 +73,7 @@ class LinkedStack {
                 return null;
             }
         }
+        return;
     }
     printStack() {
         if (this.head != null && typeof this.head != "number") {
