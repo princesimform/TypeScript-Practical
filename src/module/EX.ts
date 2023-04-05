@@ -2,7 +2,7 @@
 // Start the Equation Evaluation using prefix -> postfix
 // First Equation will convert into postfix after that
 // Postfix will Evaluated uisng precedance order so that we can get Equarate answer
-import { stackNodeType, currentType, headType, LinkedStackType } from "./typesUtills"
+import { stackNodeType, currentType, headType, LinkedStackType } from "./TypesUtills"
 
 class stackNode implements stackNodeType {
     item: null | number

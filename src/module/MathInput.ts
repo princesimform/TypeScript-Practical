@@ -1,5 +1,5 @@
-import errorMsg from "./errorMessage.js";
-import { dot, output } from "./utils.js";
+import errorMsg from "./ErrorMessage.js";
+import { dot, output } from "./Utils.js";
 import { Evaluate } from "./Evaluate.js";
 let validDecimal: boolean = false;
 
@@ -22,37 +22,37 @@ function operator(value: string): void {
 function equation(operator: string): void {
     var EvaluateVal: number = 0;
     try {
-        var EvaluateVal = Number(Evaluate(output.value))
+        var EvaluateVal = Evaluate(output.value)!
     } catch (error) {
         errorMsg();
     }
     switch (operator) {
         case "ln":
-            output.value = String(Evaluate(EvaluateVal + "log2.718"));
+            output.value = EvaluateCustomEquation(EvaluateVal + "log2.718");
             break;
         case "log":
-            output.value = String(Evaluate(EvaluateVal + "log10"));
+            output.value = EvaluateCustomEquation(EvaluateVal + "log10");
             break;
         case "pow10":
-            output.value = String(Evaluate("10^" + EvaluateVal));
+            output.value = EvaluateCustomEquation("10^" + EvaluateVal);
             break;
         case "pow2":
-            output.value = String(Evaluate("2^" + EvaluateVal));
+            output.value = EvaluateCustomEquation("2^" + EvaluateVal);
             break;
         case "square-root":
-            output.value = String(Evaluate(`2√${EvaluateVal}`));
+            output.value = EvaluateCustomEquation(`2√${EvaluateVal}`);
             break;
         case "cube-root":
-            output.value = String(Evaluate(`3√${EvaluateVal}`));
+            output.value = EvaluateCustomEquation(`3√${EvaluateVal}`);
             break;
         case "square":
-            output.value = String(Evaluate(EvaluateVal + "^2"));
+            output.value = EvaluateCustomEquation(EvaluateVal + "^2");
             break;
         case "cube":
-            output.value = String(Evaluate(`${EvaluateVal}^3`));
+            output.value = EvaluateCustomEquation(`${EvaluateVal}^3`);
             break;
         case "oneByNum":
-            output.value = String(Evaluate("1/" + EvaluateVal));
+            output.value = EvaluateCustomEquation("1/" + EvaluateVal);
             break;
         case "fact":
             let value = parseFloat(String(EvaluateVal))
@@ -64,18 +64,18 @@ function equation(operator: string): void {
             break;
         case "exp":
             // E = 2.79 , Math.exp()
-            output.value = String(Evaluate("2.7183^" + EvaluateVal));
+            output.value = EvaluateCustomEquation("2.7183^" + EvaluateVal);
             break;
         case "pi":
             if (output.value) {
-                output.value = String(Evaluate(`${EvaluateVal}*${Math.PI.toFixed(2)}`))
+                output.value = EvaluateCustomEquation(`${EvaluateVal}*${Math.PI.toFixed(2)}`);
             } else {
                 output.value = Math.PI.toFixed(2)
             }
             break;
         case "euler":
             if (output.value) {
-                output.value = String(Evaluate(`${EvaluateVal}*${Math.E.toFixed(2)}`))
+                output.value = EvaluateCustomEquation(`${EvaluateVal}*${Math.E.toFixed(2)}`);
             } else {
                 output.value = Math.E.toFixed(2)
             }
@@ -121,5 +121,8 @@ function equation(operator: string): void {
     }
 }
 
+function EvaluateCustomEquation(equ: string): string {
+    return String(Evaluate(equ))
+}
 export { operand, operator, equation, changeValidDecimal, getValidDecimal }
 
