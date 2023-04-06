@@ -132,10 +132,7 @@ trigo.addEventListener('click', () => {
 
 window.onclick = function (event: MouseEvent) {
     output.focus();
-    console.log();
     var ButtonType = event.target as HTMLButtonElement;
-    console.log();
-
     if (!ButtonType.classList.contains('btn-func')) {
         for (let i = 0; i < funcListItem.length; i++) {
             var openDropdown = funcListItem[i];
@@ -163,7 +160,6 @@ equalTo.addEventListener('click', function () {
     try {
         output.value = String(Evaluate(output.value));
     } catch (error) {
-        console.log(error);
         errorMsg();
     }
 
@@ -173,7 +169,13 @@ equalTo.addEventListener('click', function () {
 window.addEventListener("keydown", function (e) {
     if (e.code === "Enter" || e.code === "NumpadEnter") {
         try {
-            output.value = String(Evaluate(output.value));
+            
+            let outputval = String(Evaluate(output.value))
+            
+            if (outputval != undefined) {
+                output.value = String(Evaluate(output.value));
+            }else {
+            }
         } catch (error) {
             errorMsg();
         }

@@ -59,6 +59,7 @@ class LinkedStack {
         return (this.size < 1) ? true : false;
     }
     stackTop() {
+        var _a;
         if (this.head != null && typeof this.head != "number") {
             var current = this.head;
             if (this.size > 0 && this.head != null) {
@@ -67,13 +68,10 @@ class LinkedStack {
                         current = current.next;
                     }
                 }
-                return current.item;
-            }
-            else {
-                return null;
+                return (_a = current.item) !== null && _a !== void 0 ? _a : 0;
             }
         }
-        return;
+        throw new Error();
     }
     printStack() {
         if (this.head != null && typeof this.head != "number") {
@@ -213,10 +211,19 @@ class PostFix {
             else if (c === '+' || c === '-' || c === '*' || c === '/' || c === '^' || c === '%' || c == 'log' || c === '√') {
                 this.operate(this.numStack, c);
             }
+            else {
+                throw new Error();
+            }
         }
     }
     getResult() {
-        return this.numStack.stackTop();
+        try {
+            return this.numStack.stackTop();
+        }
+        catch (error) {
+            throw new Error();
+            return 0;
+        }
     }
 }
 export { LinkedStack, stackNode, InfixToPostfix, PostFix };

@@ -78,7 +78,7 @@ class LinkedStack implements LinkedStackType {
         return (this.size < 1) ? true : false;
     }
 
-    stackTop() {
+    stackTop(): number | never {
         if (this.head != null && typeof this.head != "number") {
             var current: currentType = this.head;
             if (this.size > 0 && this.head != null) {
@@ -87,12 +87,10 @@ class LinkedStack implements LinkedStackType {
                         current = current.next;
                     }
                 }
-                return current.item;
-            } else {
-                return null;
+                return current.item ?? 0;
             }
         }
-        return;
+        throw new Error()
     }
 
     printStack() {
@@ -237,19 +235,26 @@ class PostFix {
     }
 
     EvaluatePostFix(exp: Array<string>) {
-
+        
         for (var i = 0; i < exp.length; i++) {
             let c = exp[i]!;
             if (!isNaN(parseInt(c))) {
                 this.numStack.pushToStack(parseFloat(c));
             } else if (c === '+' || c === '-' || c === '*' || c === '/' || c === '^' || c === '%' || c == 'log' || c === '√') {
                 this.operate(this.numStack, c)
+            }else {
+                throw new Error()
             }
         }
     }
 
-    getResult() {
-        return this.numStack.stackTop();
+    getResult(): number {
+        try {
+            return this.numStack.stackTop();
+        } catch (error) {
+            throw new Error()
+            return 0;
+        }
     }
 }
 
